@@ -72,5 +72,12 @@ switch ($_GET["op"]){
         );
         echo json_encode($results);
     break;
+
+    case 'selectDepartamento':
+        $rspta = $departamento->listar();
+        while ($reg = $rspta->fetch_object()){
+            echo '<option value=' . $reg->iddepartamento . '>' . $reg->codigo_departamento. ' | '.$reg->nombre_departamento.'</option>';
+        }
+    break;
 }
 ?>
