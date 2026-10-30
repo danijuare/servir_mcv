@@ -15,10 +15,13 @@
             $correlativo_info = ejecutarConsultaSimpleFila($sql_select_corr);
             $numero = $correlativo_info["correlativo_empleado"];
             
-            $codigo_empleado = 'EMP-' . str_pad($numero, 4, '0', STR_PAD_LEFT);
+            //EMP-AÑo-Mes
+            //$codigo_empleado = 'EMP-' . str_pad($numero, 4, '0', STR_PAD_LEFT);
+            $codigo_empleado = 'EMP-' . $fecha_nacimiento_empleado . '-'.str_pad($numero, 4, '0', STR_PAD_LEFT);
 
             $sql_insetar = "INSERT INTO empleados(codigo_empleado, nombres_empleado, apellidos_empleado, fecha_nacimiento_empleado, iddepartamento)
                 VALUES ('$codigo_empleado', '$nombres_empleado', '$apellidos_empleado', '$fecha_nacimiento_empleado', '$iddepartamento')";
+            ejecutarConsulta($sql_insetar);
             
             if(ejecutarConsulta($sql_insetar)){
                 return true;
